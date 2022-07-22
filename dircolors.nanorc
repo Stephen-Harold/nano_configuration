@@ -1,4 +1,6 @@
 # dircolors.nanorc
+# Written by Stephen H. Smith July '22
+
 
 # Syntax for Directory Colors
 syntax dircolors "(\.dir_colors$)"

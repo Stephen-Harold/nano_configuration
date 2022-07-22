@@ -1,0 +1,143 @@
+# nanorc
+## Global setting for Nano editor
+## You will see this format in help pages:
+# ^S → CNTRL+S
+# M+S → META+S (On my computer the META key is left ALT key)
+## Editor Setting
+#set multibuffer
+### It causes such mayhem they provide an option to make sure it's disababled ;) ###
+#unset breaklonglines
+# set breaklonglines # DON'T USE! auto hard-wrap the current line when it passes set lenght
+set tabsize 4 # tab equals for spaces 
+set afterends # CTRL+Right & CTRL+ Delete stops at word end (Notword beginning) Very Handy!
+set wordbounds # Detect word boundaries differently by treating punctuation characters as parts of words
+set wordchars "_-."
+set cutfromcursor # cut-from-cursor-to-end-of-line instead of cutting the whole line when using CNTRL+K. Very useful!
+set autoindent # follow indentation from previous line 
+set magic
+set matchbrackets "(<[{)>]}"
+set quotestr "^([ ]*([!#%:;>|}]|//))+"
+set whitespace ">." # White space indicatiors [Alt+P] Toggle visible whitespace on/off
+set regexp
+set historylog # Save the last hundred search and replacement strings
+set positionlog # Remembers curor postion between file openings. Very useful!
+set backupdir "/home/stephen/.local/share/nano/seqentialbackup" # working directory for seqentially numbered backup copies
+## cntd. when the -b opition is used on file
+set allow_insecure_backup # ignore permissions when using -b option to backup file 
+set backup # -b is always on. see nano --help or manpages
+set speller "hunspell"
+set zap # delete key & backspace deletes highlighted section (M+Delete does this by default) 
+set emptyline # linebelow title bar is left entirely blank. Must be an old feature left-over
+
+#set softwrap
+#set atblanks # wrap at whitespace 
+#set trimblanks # when auto-wrapping trim trailing white space
+set guidestripe 132 # vertical strite at the given column to judge the width of the page and wrapped text.
+set stripecolor bold,white,lightblue
+# Titlebar color and other and color of all bars if other bars aren't set
+set titlecolor bold,white,lightblack
+set indicator # Scrollbar at right 
+## flags: I when auto-indenting, M when the mark is on
+## L Hard Wrap [Meta+L] S Soft wrap [Meta+S]
+set scrollercolor bold,white,lightblack
+set linenumbers # Show Line Numbers [ALT-N] 
+set numbercolor bold,white,lightblack
+set selectedcolor red,lightwhite # selected for cut, copy, delete etc.
+set keycolor bold,white	# commands for action words at bottom of the screen
+set functioncolor bold,green # Action in help text
+set statuscolor bold,white,blue	# info update e.g. save file
+set promptcolor black,orange # search for word, replace etc. When not set Titlebar color is used.
+set errorcolor	bold,white,red # info update e.g. syntax error. Using default 
+set spotlightcolor bold,white,blue	# seach/find results
+set nohelp # Disable help text at bottom of editor. Toggle with [META-X] 
+set minibar # Shows info at the bottom, in one line and removes the title bar, unfortuanley diasbles status bar 
+set minicolor bold,white,lightblack
+#set constantshow # Show corsur in status bar [CNTRL-C] Note: overrides quickblank option 
+set stateflags # top right of Title bar or right of minibar
+#set quickblank # Status bar messages disapear after a key press and not 20 presses.
+## Contd. constantshow overrides this. If minibar or zero are enabled the message flashes to fast to be seen.
+
+
+### JUSTIFCATION ###
+#set fill 96 # right-hand margin for Justify 
+#set punct "!.?"
+#set brackets ""')>]}" # Closing brackets Justifcation (Not including blank characters).
+
+## In editor commands:
+## Tab	Indent marked region
+## Shift+Tab   	Unindent marked region
+## Ctrl+L	Refresh the screen
+## Full Help [CNTRL-G] Text
+
+## Extended Syntax
+## Syntax for the Linter and possibly the Formatter
+#extendsyntax c linter gcc -fshow-column
+#extendsyntax python linter pyflakes
+#extendsyntax ruby linter ruby -w -c
+#extendsyntax tex linter chktex -v0 -q -I
+#extendsyntax sh linter dash -n
+#extendsyntax bash formatter shfmt
+
+## using defulat bindings from now on -- too many to-re-asign without mistakes
+# except these which I can't live without and the defailts are stupid
+unbind ^Z main
+unbind ^Y all
+unbind ^X main
+unbind ^V main
+unbind ^C main
+unbind ^Q main
+bind ^Z undo main
+bind ^Y redo all
+bind ^V paste main # 1. Does not work with mouse's copy and paste buffer
+bind ^C copy main # 2. Nano's buffer is different to main buffer
+bind ^Q exit main # Changed for my preference only, the is setting default CTRL-X 
+bind ^X cut main # 3. Again, only works with current nano buffer
+## === Key bindings ===
+## For all details, see 'man nanorc', section REBINDING KEYS.
+
+## If you want to suspend nano with one keystroke (instead of with ^T^Z):
+#bind ^Z suspend main
+
+## The <Ctrl+Delete> keystroke deletes the word to the right of the cursor.
+## On some terminals the <Ctrl+Backspace> keystroke produces ^H, which is
+## the ASCII character for backspace, so it is bound by default to the
+## backspace function.  The <Backspace> key itself produces a different
+## keycode, which is hard-bound to the backspace function.  So, if you
+## normally use Backspace> for backspacing and not ^H, you can make
+## <Ctrl+Backspace> delete the word to the left of the cursor with:
+#bind ^H chopwordleft main
+
+## For a more mnemonic Comment keystroke (overriding Cut-from-cursor):
+bind M-K comment main
+
+## If you want ^L to just refresh the screen and not center the cursor:
+bind ^L refresh main
+
+## When you sometimes type M-J instead of M-K, or M-T instead of M-R:
+unbind M-J main
+unbind M-T main
+## (Those functions are still accessible through ^T^J and ^T^V.)
+
+
+## To include most of the existing syntax definitions, you can do:
+#include "/usr/share/nano/*.nanorc"
+
+## Or you can select just the ones you need.  For example:
+include "/usr/share/nano/nanorc.nanorc" # This is for nano setup files and unconfigured files
+include "/usr/share/nano/html.nanorc"
+include "/usr/share/nano/sh.nanorc"
+include "/usr/share/nano/dircolors.nanorc"
+## In /usr/share/nano/extra/ you can find some syntaxes that are
+## specific for certain distros or for some less common languages.
+
+include "/usr/share/nano/python.nanorc"
+## If <Tab> should always produce four spaces when editing a Python file,
+## independent of the settings of 'tabsize' and 'tabstospaces':
+extendsyntax python tabgives "    "
+
+#include "/usr/share/nano/make.nanorc"
+## If <Tab> should always produce an actual TAB when editing a Makefile:
+#extendsyntax makefile tabgives "	"
+
+
+

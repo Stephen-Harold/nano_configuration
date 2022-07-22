@@ -7,7 +7,7 @@ magic "(POSIX|Bourne-Again) shell script.*text"
 comment "#","##"
 
 linter dash -n
-formatter shfmt
+# formatter shfmt arguments required!
 ## https://www.shellcheck.ne
 
 ## yellow on dark blue

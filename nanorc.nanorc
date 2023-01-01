@@ -1,6 +1,6 @@
 # nanorc.nanorc
 ## Syntax highlighting for nanorc files.
-syntax nanorc "[/.]nanorc(\.in)?$"
+syntax nanorc "[/.]nanorc(\.in)?|nanorc$"
 comment "#"
 
 ## Everything that does not get recolored is invalid:
@@ -29,8 +29,8 @@ color bold,lightmagenta "[[:blank:]](start=)?".+""
 color white,red "^#![[:blank:]](start=)?"
 
 ## Commands
-color bold,sea "^[[:blank:]]*((un)?(bind|set)|include|syntax|header|magic|comment|formatter|linter|tabgives|extendsyntax)\>"
-color bold,sea "^[[:blank:]]*i?color\>|[[:blank:]](start=|end=)"
+color bold,lightblue "^[[:blank:]]*((un)?(bind|set)|include|syntax|header|magic|comment|formatter|linter|tabgives|extendsyntax)\>"
+color bold,lightblue "^[[:blank:]]*i?color\>|[[:blank:]](start=|end=)"
 
 ## Control codes
 color bold,blue "[[:cntrl:]]"

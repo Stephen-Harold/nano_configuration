@@ -37,11 +37,13 @@ color bold,blue "[[:cntrl:]]"
 
 ## Comments: double hash (italic,slate)
 # Disabled switch, single hash (green)
-color sky "^[[:blank:]]*#.*|[[:blank:]]#.{0,2}[^[:xdigit:]].*"
-color italic,slate "^[[:blank:]]*##.*"
+color grey "^[[:blank:]]*#.*|[[:blank:]]#.{0,2}[^[:xdigit:]].*"
+color italic,grey "^[[:blank:]]*##.*"
+color italic,grey "[[:blank:]]#[[:blank:]].*"
+color italic,grey "[[:blank:]]#.*"
 
 ## Trailing whitespace
 ## It's not trailing, I'm just not finished..
-color ,brick "^[[:space:]]+$"
+color ,red "^[[:space:]]+$"
 
 
